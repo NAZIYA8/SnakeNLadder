@@ -6,12 +6,12 @@ import java.util.Scanner;
 public class SnakeNLadder {
 	public static void main(String[] args) {
 		int position = 0;
-		System.out.println("Do you want to start the game yes or no?");
+		System.out.println("Do you want to start the Game yes or no?");
 		Scanner scan = new Scanner(System.in);
 		String ans = scan.next();
 
-		if (ans.equals("yes")) {
-			System.out.println("Game started at position =  " + position);
+		if (ans.equals("y")) {
+			System.out.println("Game started at position = " + position);
 		} else {
 			System.out.println("No Worries");
 		}
@@ -24,10 +24,12 @@ public class SnakeNLadder {
 			int dice = (int) (Math.random() * 6) + 1;
 			System.out.println("dice  " + dice);
 			
+			if (currentPosition + dice > 100) {
+				System.out.println("Skipped....");
+				continue;
+			}
 			currentPosition += dice;
-
 			System.out.println("Position: " + currentPosition);
-
 			if (ladders.contains(currentPosition)) {
 				System.out.println("Ladder");
 				currentPosition += dice;
@@ -39,11 +41,9 @@ public class SnakeNLadder {
 			} else {
 				System.out.println("No Play");
 			}
+			if (currentPosition < 0) {
+				currentPosition = 0;
+			}
 		}
-
-		if (currentPosition < 0) {
-			currentPosition = 0;
-		}
-
 	}
 }
